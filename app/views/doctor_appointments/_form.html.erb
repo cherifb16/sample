@@ -1,0 +1,52 @@
+<%= form_with(model: doctor_appointment, class: 'pure-form pure-form-aligned', local: true) do |form| %>
+  <% if doctor_appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(doctor_appointment.errors.count, "error") %> prohibited this doctor_appointment from being saved:</h2>
+
+      <ul>
+      <% doctor_appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field pure-control-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :doctor_appointment_description %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :from %>
+    <%= form.datetime_select :from, id: :doctor_appointment_from %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :to %>
+    <%= form.datetime_select :to, id: :doctor_appointment_to %>
+  </div>
+
+
+  <% if @doctor %>
+    <div class="field pure-control-group">Doctor: <%= @doctor.first_name %>&nbsp;<%= @doctor.last_name %></div>
+    <%= form.hidden_field :doctor_id, :value => @doctor.id%>
+  <% else %>
+    <div class="field pure-control-group">
+      <%= form.label :doctor_id %>
+      <%= form.collection_select :doctor_id, Doctor.order(:first_name),:id,:first_name, include_blank: true, id: 'pprice', class: 'form-control' %>
+    </div>
+  <% end %>
+  <% if @user %>
+    <div class="field pure-control-group">User: <%= @user.first_name %>&nbsp;<%= @user.last_name %></div>
+    <%= form.hidden_field :user_id, :value => @user.id%>
+  <% else %>
+    <div class="field pure-control-group">
+      <%= form.label :user_id %>
+      
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit 'submit', :class => 'pure-button'%>
+  </div>
+<% end %>

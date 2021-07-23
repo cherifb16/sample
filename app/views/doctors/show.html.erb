@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @doctor.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @doctor.last_name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @doctor.city %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @doctor.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @doctor.password %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @doctor.address %>
+</p>
+
+<p>
+  <strong>Primary practice:</strong>
+  <%= @doctor.primary_practice %>
+</p>
+
+<p>
+  <strong>Secondary practice:</strong>
+  <%= @doctor.secondary_practice %>
+</p>
+
+<p>
+  <strong>GCMID:</strong>
+  <%= @doctor.gcmid %>
+</p>
+
+<%= link_to 'Edit', edit_doctor_path(@doctor), class: 'pure-button  pure-button-primary'  %> |
+<%= link_to 'Back', doctors_path, class: 'pure-button  button-secondary'  %>

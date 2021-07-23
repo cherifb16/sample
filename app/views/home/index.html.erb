@@ -1,0 +1,45 @@
+<div id="main">
+    <div class="header">
+        <h1>Healthcare Management Website</h1>
+    </div>
+
+    <div class="content">
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+        <% if !@user && !@doctor %>
+        <h4>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="hovereffect">
+    <%= image_tag("africa.jpeg")%>
+        
+        <div class="overlay">
+            <h2>We Care for your health</h2>
+            <a class="info" href="#">link here</a>
+            <%= link_to "Register here",  new_user_registration_path, :"data-no-turbolink"=>true,method:"get", class: 'info'  %>
+        </div>
+    </div>
+</div>
+
+        </h4>
+        <% end %>
+        <% if @user %>
+          <h2 class="content-subhead">You have logged in as User <%= link_to "Logout", {:controller => :users, :action => :logout}, { class: 'pure-button  button-secondary'} %> </h2>
+          <p>
+            Welcome User: <%= @user.first_name %>&nbsp;<%= @user.last_name %>
+            You will have the context of the logged in user in viewing all the user related views. Please logout in case you are facing some issues. Have a good health!
+          </p>
+        <% end %>
+        <% if @doctor %>
+          <h2 class="content-subhead">You have logged in as Doctor  <%= link_to "Logout", {:controller => :doctors, :action => :logout}, { class: 'pure-button  button-secondary'} %></h2>
+          <p>
+            Welcome Doctor: <%= @doctor.first_name %>&nbsp;<%= @doctor.last_name %>
+            You will have the context of the logged in doctor in viewing all the doctor related views. Please logout in case you are facing some issues. Have a good health!
+          </p>
+        <% end %>
+
+    </div>
+</div>

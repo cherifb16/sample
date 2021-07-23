@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Healthcare</title>
+    <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+
+  <body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+        <div id="menu">
+            <div class="pure-menu">
+                <a class="pure-menu-heading" href="/">HealthCare</a>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item">
+                      <%= link_to 'Doctors', doctors_path, class: 'pure-menu-link'  %>
+                    </li>
+                    <li class="pure-menu-item">
+                    </li>
+                    <li class="pure-menu-item">
+                      <%= link_to 'Doctor Appointments', doctor_appointments_path, class: 'pure-menu-link'  %>
+                    </li>
+                    <% if user_signed_in? && current_user.user_role== 'admin'%>
+                      <li>
+                          <%= link_to "Dashboard",  rails_admin.dashboard_path,:"data-no-turbolink"=>true,method:"get" %>
+                      </li>
+                    <% end %>
+                    <li class="pure-menu-item">
+                      <% if user_signed_in? && current_user.user_role== 'doctor'%>
+                        <%= link_to 'Doctor Notifications', doctor_notifications_path, class: 'pure-menu-link'  %>
+                      <% end %>
+                    </li>
+                    <% if user_signed_in? %>
+                    <li class="pure-menu-item">
+                    <%= link_to "Logout", destroy_user_session_path, :method => :delete, class: 'pure-menu-link'  %>
+                    </li>
+                    <% else %>
+              <li class="pure-menu-item">
+                <%= link_to "Sign in",  new_user_session_path,:"data-no-turbolink"=>true,method:"get", class: 'pure-menu-link'  %>
+              </li>
+              <li class="pure-menu-item">
+              <%= link_to "Sign up",  new_user_registration_path, :"data-no-turbolink"=>true,method:"get", class: 'pure-menu-link'  %>
+              </li>
+          <% end %>
+                </ul>
+            </div>
+        </div>
+        <%= yield %>
+        <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+    </div>
+  </body>
+</html>

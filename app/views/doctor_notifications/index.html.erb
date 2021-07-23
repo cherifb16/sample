@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Doctor Notifications</h1>
+<% if @user %>
+  <h3>User: <%= @user.first_name %>&nbsp;<%= @user.last_name %></h3>
+<% end %>
+<% if @doctor %>
+  <h3>Doctor: <%= @doctor.first_name %>&nbsp;<%= @doctor.last_name %></h3>
+<% end %>
+<table class="pure-table pure-table-bordered">
+  <thead>
+    <tr class="<%= cycle('pure-table-odd', '') -%>">
+      <th>Title</th>
+      <th>User</th>
+      <th>Doctor</th>
+      <th>Notified on</th>
+      <th>Notes</th>
+      <th>Severity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctor_notifications.each do |doctor_notification| %>
+      <tr class="<%= cycle('pure-table-odd', '') -%>">
+        <td><%= doctor_notification.title %></td>
+        <td><%= doctor_notification.user.first_name %>&nbsp;<%= doctor_notification.user.last_name %></td>
+        <td><%= doctor_notification.doctor.first_name %>&nbsp;<%= doctor_notification.doctor.last_name %></td>
+        <td><%= doctor_notification.notified_on %></td>
+        <td><%= doctor_notification.notes %></td>
+        <td><%= doctor_notification.severity %></td>
+        <td><%= link_to 'Show', doctor_notification, class: 'pure-button  pure-button-primary'  %></td>
+        <td><%= link_to 'Edit', edit_doctor_notification_path(doctor_notification), class: 'pure-button  button-secondary'  %></td>
+        <td><%= link_to 'Destroy', doctor_notification, method: :delete, data: { confirm: 'Are you sure?' } , class: 'pure-button  button-warning' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Doctor Notification', new_doctor_notification_path, class: 'pure-button  button-secondary'  %>
