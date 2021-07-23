@@ -11,11 +11,11 @@ user.user_role = 'admin'
 user.save!
 
 30.times do |t|
-    user = Doctor.create! :first_name => "Hash#{t}",
-                        :last_name => "Mahad1 #{t}",
+    user = Doctor.create! :first_name => "Winny#{t}",
+                        :last_name => "uwi #{t}",
                         :city => "Unknown#{t}",
-                        :username => 'Mahad',
-                        :address => "Somalia#{t}",
+                        :username => 'winny',
+                        :address => "Rwanda#{t}",
                         :primary_practice  => "Nurse#{t}",
                         :secondary_practice=> "Pediatry#{t}",
                         :gcmid => 'Blood pressure'
